@@ -1,0 +1,31 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{subcaption}
+
+\title{Benchmarking a Custom VeSpA Pipeline, Segment Anything, and YOLOv8 for Vessel Segmentation in Histological Images}
+\author{Repository-based technical manuscript}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This manuscript documents the segmentation benchmark implemented in the repository for vessel analysis in histological images. Three approaches were compared under a unified binary-mask interface: a custom VeSpA image-processing pipeline, the Segment Anything Model (SAM), and a pretrained Ultralytics YOLOv8 segmentation model. Evaluation was performed on four histological TIFF images with paired binary vessel masks using Dice coefficient, intersection over union, precision, and recall. In the generated repository results, VeSpA achieved the highest mean Dice coefficient (0.7332), followed by SAM (0.2950) and YOLOv8-seg (0.0299). Mean runtime per image was 2.57 s for VeSpA, 23.35 s for SAM, and 0.59 s for YOLOv8-seg. The manuscript reports the implemented methods and the exact benchmark outcomes produced by the repository, within the broader context of the Spatial Vessel Analysis workflow.
+\end{abstract}
+
+\input{introduction}
+\input{method}
+\input{result}
+\input{conclusion}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

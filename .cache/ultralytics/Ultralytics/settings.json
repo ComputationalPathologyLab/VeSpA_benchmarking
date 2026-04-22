@@ -1,0 +1,21 @@
+{
+  "settings_version": "0.0.6",
+  "datasets_dir": "C:\\Users\\srenne\\GitHubRepo\\VeSpA_benchmarking\\datasets",
+  "weights_dir": "weights",
+  "runs_dir": "runs",
+  "uuid": "6cf06ed8347f8783419e022cfb49416cf4e1d39643a366ce2dc2df8230ff184f",
+  "sync": true,
+  "api_key": "",
+  "openai_api_key": "",
+  "clearml": true,
+  "comet": true,
+  "dvc": true,
+  "hub": true,
+  "mlflow": true,
+  "neptune": true,
+  "raytune": true,
+  "tensorboard": false,
+  "wandb": false,
+  "vscode_msg": true,
+  "openvino_msg": true
+}

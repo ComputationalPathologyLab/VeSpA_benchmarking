@@ -1,0 +1,20 @@
+\begin{thebibliography}{1}
+
+\bibitem{kirillov2023sam}
+Alexander Kirillov, Eric Mintun, Nikhila Ravi, Hanzi Mao, Chloe Rolland, Laura
+  Gustafson, Tete Xiao, Spencer Whitehead, Alexander~C. Berg, Wan-Yen Lo, Piotr
+  Doll{\'a}r, and Ross Girshick.
+\newblock Segment anything.
+\newblock {\em arXiv}, abs/2304.02643, 2023.
+
+\bibitem{segmentanything_repo}
+{Meta AI}.
+\newblock facebookresearch/segment-anything.
+\newblock \url{https://github.com/facebookresearch/segment-anything}, 2023.
+
+\bibitem{ultralytics_repo}
+{Ultralytics}.
+\newblock Ultralytics yolo.
+\newblock \url{https://github.com/ultralytics/ultralytics}, 2024.
+
+\end{thebibliography}
