@@ -2,8 +2,8 @@ This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.3) (preloaded format=
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./manuscript.tex
-(manuscript.tex
+**./manuscript/manuscript.tex
+(manuscript/manuscript.tex
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
 (C:\Users\srenne\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -346,7 +346,8 @@ ftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count306
 \l__pdf_internal_box=\box56
-) (manuscript.aux)
+)
+No file manuscript.aux.
 \openout1 = `manuscript.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
@@ -367,7 +368,6 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 15.
 LaTeX Font Info:    ... okay on input line 15.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 15.
 LaTeX Font Info:    ... okay on input line 15.
-
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -429,142 +429,34 @@ cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 Package hyperref Info: Link coloring OFF on input line 15.
- (manuscript.out) (manuscript.out)
 \@outlinefile=\write3
 \openout3 = `manuscript.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
- (introduction.tex) (method.tex
-
-[1
-
-{C:/Users/srenne/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-
-[2]) (result.tex
-Overfull \hbox (0.7895pt too wide) in paragraph at lines 41--1
-\OT1/cmr/m/n/10.95 The bench-mark writes per-image and per-model met-rics to $\
-OT1/cmtt/m/n/10.95 results / metrics / results . csv$\OT1/cmr/m/n/10.95 , model
--
- []
 
 
+! LaTeX Error: File `introduction.tex' not found.
 
-[3]
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: tex)
 
-[4]
-<figures/ROI_1_raw_small.jpg, id=118, 1405.25pt x 1405.25pt>
-File: figures/ROI_1_raw_small.jpg Graphic file (type jpg)
-<use figures/ROI_1_raw_small.jpg>
-Package pdftex.def Info: figures/ROI_1_raw_small.jpg  used on input line 77.
-(pdftex.def)             Requested size: 220.78543pt x 220.77054pt.
-<figures/ROI_1_vespa_overlay_small.jpg, id=119, 1405.25pt x 1405.25pt>
-File: figures/ROI_1_vespa_overlay_small.jpg Graphic file (type jpg)
-<use figures/ROI_1_vespa_overlay_small.jpg>
-Package pdftex.def Info: figures/ROI_1_vespa_overlay_small.jpg  used on input l
-ine 83.
-(pdftex.def)             Requested size: 220.78543pt x 220.77054pt.
-<figures/ROI_1_sam_overlay_small.jpg, id=120, 1405.25pt x 1405.25pt>
-File: figures/ROI_1_sam_overlay_small.jpg Graphic file (type jpg)
-<use figures/ROI_1_sam_overlay_small.jpg>
-Package pdftex.def Info: figures/ROI_1_sam_overlay_small.jpg  used on input lin
-e 91.
-(pdftex.def)             Requested size: 220.78543pt x 220.77054pt.
-<figures/ROI_1_vespa_sam_overlay_small.jpg, id=121, 1606.0pt x 1606.0pt>
-File: figures/ROI_1_vespa_sam_overlay_small.jpg Graphic file (type jpg)
-<use figures/ROI_1_vespa_sam_overlay_small.jpg>
-Package pdftex.def Info: figures/ROI_1_vespa_sam_overlay_small.jpg  used on inp
-ut line 97.
-(pdftex.def)             Requested size: 220.78543pt x 220.77054pt.
-<../results/metrics/dice_boxplot.png, id=122, 462.528pt x 346.896pt>
-File: ../results/metrics/dice_boxplot.png Graphic file (type png)
-<use ../results/metrics/dice_boxplot.png>
-Package pdftex.def Info: ../results/metrics/dice_boxplot.png  used on input lin
-e 106.
-(pdftex.def)             Requested size: 328.82707pt x 246.63135pt.
-<../results/metrics/iou_comparison.png, id=124, 722.7pt x 433.62pt>
-File: ../results/metrics/iou_comparison.png Graphic file (type png)
-<use ../results/metrics/iou_comparison.png>
-Package pdftex.def Info: ../results/metrics/iou_comparison.png  used on input l
-ine 113.
-(pdftex.def)             Requested size: 328.82707pt x 197.29741pt.
-) (conclusion.tex) (manuscript.bbl)
+Enter file name: x
 
-[5]
+! Emergency stop.
+<read *> 
+         
+l.23 \input{introduction}
+                         
+*** (cannot \read from terminal in nonstop modes)
 
-[6 <./figures/ROI_1_raw_small.jpg> <./figures/ROI_1_vespa_overlay_small.jpg> <.
-/figures/ROI_1_sam_overlay_small.jpg> <./figures/ROI_1_vespa_sam_overlay_small.
-jpg>]
-
-[7 <../results/metrics/dice_boxplot.png> <../results/metrics/iou_comparison.png
->] (manuscript.aux)
- ***********
-LaTeX2e <2024-11-01> patch level 2
-L3 programming layer <2025-01-18>
- ***********
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `manuscript.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `manuscript.out':
-(rerunfilecheck)             Before: 83EEE511384C2944AB3C4A88D60A90F7;3583
-(rerunfilecheck)             After:  CBB8FEF2B81A825704140BEF1705F212;1605.
- ) 
+ 
 Here is how much of TeX's memory you used:
- 11336 strings out of 473522
- 183568 string characters out of 5714126
- 594425 words of memory out of 5000000
- 34402 multiletter control sequences out of 15000+600000
- 565420 words of font info for 59 fonts, out of 8000000 for 9000
+ 11138 strings out of 473522
+ 178651 string characters out of 5714126
+ 579279 words of memory out of 5000000
+ 34266 multiletter control sequences out of 15000+600000
+ 563154 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,9n,79p,1110b,542s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-pdfTeX warning (dest): name{subsection.3.2} has been referenced but does not ex
-ist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsection.3.1} has been referenced but does not ex
-ist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsubsection.2.5.5} has been referenced but does n
-ot exist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsubsection.2.5.4} has been referenced but does n
-ot exist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsubsection.2.5.3} has been referenced but does n
-ot exist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsubsection.2.5.2} has been referenced but does n
-ot exist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsubsection.2.5.1} has been referenced but does n
-ot exist, replaced by a fixed one
-
-<C:/Users/srenne/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
-mbx10.pfb><C:/Users/srenne/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmbx12.pfb><C:/Users/srenne/AppData/Local/Programs/MiKTeX/fonts/type1/
-public/amsfonts/cm/cmmi10.pfb><C:/Users/srenne/AppData/Local/Programs/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/srenne/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/srenne/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/srenne/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/sr
-enne/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C
-:/Users/srenne/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmt
-t10.pfb>
-Output written on manuscript.pdf (7 pages, 1605641 bytes).
-PDF statistics:
- 192 PDF objects out of 1000 (max. 8388607)
- 36 named destinations out of 1000 (max. 500000)
- 175 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+ 75i,6n,79p,1121b,199s stack positions out of 10000i,1000n,20000p,200000b,200000s
+!  ==> Fatal error occurred, no output PDF file produced!
