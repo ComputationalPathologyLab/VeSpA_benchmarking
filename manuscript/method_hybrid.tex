@@ -1,0 +1,38 @@
+
+
+\subsection{Hybrid VeSpA-SAM pipeline (NEW)}
+
+The hybrid approach combines domain knowledge from the VeSpA color-based pipeline with the segmentation refinement capabilities of the Segment Anything Model. This pipeline is motivated by the observation that brown DAB immunostaining marks endothelial structures, providing a strong signal that can guide more targeted segmentation.
+
+The pipeline proceeds in four stages:
+
+\subsubsection{Stage 1: Stain detection via color decomposition}
+Following VeSpA, the input image in BGR format is converted to CMYK color space, and the yellow channel is extracted. This channel captures the inverse of brown staining (high yellow values indicate low brown stain). The yellow channel is smoothed with Gaussian filtering and binarized using Otsu's method, producing a preliminary stain mask that identifies candidate vessel regions. Morphological closing is applied to connect nearby stain components and reduce fragmentation.
+
+\subsubsection{Stage 2: Prompt generation from connected components}
+Connected-component analysis is performed on the stain mask to identify individual vessel candidates. For each connected component, the centroid is computed and stored as a point prompt. Optionally, bounding boxes around each component are also extracted. These prompts represent regions of interest that are likely to correspond to endothelial structures.
+
+\subsubsection{Stage 3: SAM-guided refinement}
+Unlike the automatic mask generation used in the standard SAM pipeline, the hybrid approach employs the \texttt{SamPredictor} interface with explicit point prompts. For each prompt point (centroid of a stain component), the predictor generates a refined segmentation mask. This approach leverages SAM's foundation-model capabilities to correct imperfect boundaries from the color-based prior while remaining focused on histologically relevant structures.
+
+Formally, given a set of prompt points $P = \{p_1, p_2, \ldots, p_n\}$ extracted from the stain mask, the predictor applies:
+\[
+\text{mask}_i = \text{SAM.predict}(p_i, \text{label}=1),
+\]
+where \texttt{label}=1 indicates a foreground prompt. Multiple candidate masks per prompt can be generated using \texttt{multimask\_output=True} and the highest-scoring mask is selected.
+
+\subsubsection{Stage 4: Post-processing and combination}
+All refined masks are combined using logical union. Morphological opening and closing are applied to remove small artifacts and fill isolated holes. The final binary prediction is returned in the same format as the other pipelines.
+
+\subsubsection{Rationale and expected advantages}
+
+The hybrid approach addresses limitations of both component methods:
+\begin{itemize}
+    \item \textbf{vs. VeSpA alone:} SAM refinement corrects imperfect morphological operations and adapts to boundary variations without extensive kernel-size tuning.
+    \item \textbf{vs. SAM automatic:} The color prior reduces false positives from non-vessel structures (e.g., image artifacts, overlapping tissue) that the automatic generator might detect.
+    \item \textbf{Histology-aware:} Explicitly targets DAB immunostaining, which marks endothelium.
+    \item \textbf{Prompt-guided specificity:} Reduces the search space from the entire image (as in automatic SAM) to regions likely containing vessels.
+    \item \textbf{Robustness:} Better handling of staining intensity variations by combining a color prior with a general-purpose segmentation model.
+\end{itemize}
+
+The hybrid pipeline demonstrates how domain priors and foundation models can be integrated to create specialized tools for histology image analysis.

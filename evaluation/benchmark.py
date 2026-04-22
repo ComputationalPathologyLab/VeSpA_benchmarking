@@ -25,6 +25,7 @@ from evaluation.metrics import compute_all_metrics
 from pipelines.VeSpA.run_vespa import run_model as run_vespa
 from pipelines.sam.run_sam import run_model as run_sam
 from pipelines.yolo.run_yolo import run_model as run_yolo
+from pipelines.hybrid.run_vespa_sam import run_model as run_vespa_sam_hybrid
 
 
 DATASET_DIR = REPO_ROOT / "datasets"
@@ -110,24 +111,48 @@ def generate_summary_plots(results_df: pd.DataFrame) -> None:
     if results_df.empty:
         return
 
-    plt.figure(figsize=(8, 6))
+    plt.figure(figsize=(10, 6))
     results_df.boxplot(column="dice", by="model")
     plt.title("Dice Score by Model")
     plt.suptitle("")
     plt.xlabel("Model")
     plt.ylabel("Dice")
+    plt.xticks(rotation=45, ha='right')
     plt.tight_layout()
     plt.savefig(METRICS_DIR / "dice_boxplot.png", dpi=200)
     plt.close()
 
-    plt.figure(figsize=(8, 6))
+    plt.figure(figsize=(10, 6))
     summary = results_df.groupby("model", as_index=False)["iou"].mean()
-    plt.bar(summary["model"], summary["iou"], color=["#4c78a8", "#f58518", "#54a24b"][: len(summary)])
+    colors = ["#4c78a8", "#f58518", "#54a24b", "#e45756"][:len(summary)]
+    plt.bar(summary["model"], summary["iou"], color=colors)
     plt.title("Mean IoU by Model")
     plt.xlabel("Model")
     plt.ylabel("Mean IoU")
+    plt.xticks(rotation=45, ha='right')
     plt.tight_layout()
     plt.savefig(METRICS_DIR / "iou_comparison.png", dpi=200)
+    plt.close()
+    
+    # Additional comprehensive comparison plot
+    plt.figure(figsize=(12, 6))
+    metrics_to_plot = ["dice", "iou", "precision", "recall"]
+    summary_all = results_df.groupby("model", as_index=False)[metrics_to_plot].mean()
+    
+    x = np.arange(len(summary_all))
+    width = 0.2
+    
+    for i, metric in enumerate(metrics_to_plot):
+        plt.bar(x + i * width, summary_all[metric], width, label=metric.capitalize())
+    
+    plt.xlabel("Model")
+    plt.ylabel("Score")
+    plt.title("Comprehensive Metric Comparison")
+    plt.xticks(x + width * 1.5, summary_all["model"], rotation=45, ha='right')
+    plt.legend()
+    plt.ylim([0, 1.0])
+    plt.tight_layout()
+    plt.savefig(METRICS_DIR / "metrics_comparison.png", dpi=200)
     plt.close()
 
 
@@ -136,6 +161,7 @@ def build_model_registry() -> dict[str, callable]:
         "VeSpA": run_vespa,
         "SAM": run_sam,
         "YOLOv8-seg": run_yolo,
+        "VeSpA+SAM (Hybrid)": run_vespa_sam_hybrid,
     }
 
 

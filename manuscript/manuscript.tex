@@ -8,7 +8,7 @@
 \usepackage{float}
 \usepackage{subcaption}
 
-\title{Benchmarking a Custom VeSpA Pipeline, Segment Anything, and YOLOv8 for Vessel Segmentation in Histological Images}
+\title{Benchmarking VeSpA, Segment Anything, YOLOv8, and a Hybrid VeSpA-SAM Approach for Vessel Segmentation in Histological Images}
 \author{Repository-based technical manuscript}
 \date{\today}
 
@@ -17,7 +17,7 @@
 \maketitle
 
 \begin{abstract}
-This manuscript documents the segmentation benchmark implemented in the repository for vessel analysis in histological images. Three approaches were compared under a unified binary-mask interface: a custom VeSpA image-processing pipeline, the Segment Anything Model (SAM), and a pretrained Ultralytics YOLOv8 segmentation model. Evaluation was performed on four histological TIFF images with paired binary vessel masks using Dice coefficient, intersection over union, precision, and recall. In the generated repository results, VeSpA achieved the highest mean Dice coefficient (0.7332), followed by SAM (0.2950) and YOLOv8-seg (0.0299). Mean runtime per image was 2.57 s for VeSpA, 23.35 s for SAM, and 0.59 s for YOLOv8-seg. The manuscript reports the implemented methods and the exact benchmark outcomes produced by the repository, within the broader context of the Spatial Vessel Analysis workflow.
+This manuscript documents the segmentation benchmark implemented in the repository for vessel analysis in histological images with DAB immunostaining. Four approaches were compared under a unified binary-mask interface: a custom VeSpA image-processing pipeline (color-based), the Segment Anything Model (SAM) with automatic mask generation, a pretrained Ultralytics YOLOv8 segmentation model, and a hybrid VeSpA-SAM approach combining color priors with prompt-guided foundation-model refinement. Evaluation was performed on four histological TIFF images with paired binary vessel masks using Dice coefficient, intersection over union, precision, and recall. In the current repository benchmark, VeSpA achieved the highest mean Dice coefficient (0.7332), followed by the hybrid VeSpA-SAM pipeline (0.6901), SAM (0.2950), and YOLOv8-seg (0.0299). Mean runtime per image was 2.58 s for VeSpA, 43.46 s for the hybrid method, 25.23 s for SAM, and 0.63 s for YOLOv8-seg. This manuscript reports the implemented methods and the benchmark outcomes produced by the repository code.
 \end{abstract}
 
 \input{introduction}
@@ -29,3 +29,4 @@ This manuscript documents the segmentation benchmark implemented in the reposito
 \bibliography{references}
 
 \end{document}
+

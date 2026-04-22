@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.3) (preloaded format=pdflatex 2025.4.7)  21 APR 2026 19:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.3) (preloaded format=pdflatex 2025.4.7)  22 APR 2026 10:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -441,8 +441,10 @@ Package caption Info: End \AtBeginDocument code.
 
 {C:/Users/srenne/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
 
-[2]) (result.tex
-Overfull \hbox (0.7895pt too wide) in paragraph at lines 36--1
+[2]
+
+[3]) (result.tex
+Overfull \hbox (0.7895pt too wide) in paragraph at lines 73--1
 \OT1/cmr/m/n/10.95 The bench-mark writes per-image and per-model met-rics to $\
 OT1/cmtt/m/n/10.95 results / metrics / results . csv$\OT1/cmr/m/n/10.95 , model
 -
@@ -450,83 +452,96 @@ OT1/cmtt/m/n/10.95 results / metrics / results . csv$\OT1/cmr/m/n/10.95 , model
 
 
 
-[3]
-<figures/ROI_1_raw_small.jpg, id=81, 1405.25pt x 1405.25pt>
+[4]
+
+[5]
+<figures/ROI_1_raw_small.jpg, id=99, 1405.25pt x 1405.25pt>
 File: figures/ROI_1_raw_small.jpg Graphic file (type jpg)
 <use figures/ROI_1_raw_small.jpg>
-Package pdftex.def Info: figures/ROI_1_raw_small.jpg  used on input line 70.
+Package pdftex.def Info: figures/ROI_1_raw_small.jpg  used on input line 83.
 (pdftex.def)             Requested size: 220.78543pt x 220.77054pt.
-<figures/ROI_1_vespa_overlay_small.jpg, id=82, 1405.25pt x 1405.25pt>
+<figures/ROI_1_vespa_overlay_small.jpg, id=100, 1405.25pt x 1405.25pt>
 File: figures/ROI_1_vespa_overlay_small.jpg Graphic file (type jpg)
 <use figures/ROI_1_vespa_overlay_small.jpg>
 Package pdftex.def Info: figures/ROI_1_vespa_overlay_small.jpg  used on input l
-ine 76.
+ine 89.
 (pdftex.def)             Requested size: 220.78543pt x 220.77054pt.
-<figures/ROI_1_sam_overlay_small.jpg, id=83, 1405.25pt x 1405.25pt>
+<figures/ROI_1_sam_overlay_small.jpg, id=101, 1405.25pt x 1405.25pt>
 File: figures/ROI_1_sam_overlay_small.jpg Graphic file (type jpg)
 <use figures/ROI_1_sam_overlay_small.jpg>
 Package pdftex.def Info: figures/ROI_1_sam_overlay_small.jpg  used on input lin
-e 84.
+e 97.
 (pdftex.def)             Requested size: 220.78543pt x 220.77054pt.
-<figures/ROI_1_yolo_overlay_small.jpg, id=84, 1405.25pt x 1405.25pt>
+<figures/ROI_1_yolo_overlay_small.jpg, id=102, 1405.25pt x 1405.25pt>
 File: figures/ROI_1_yolo_overlay_small.jpg Graphic file (type jpg)
 <use figures/ROI_1_yolo_overlay_small.jpg>
 Package pdftex.def Info: figures/ROI_1_yolo_overlay_small.jpg  used on input li
-ne 90.
+ne 103.
 (pdftex.def)             Requested size: 220.78543pt x 220.77054pt.
-<../results/metrics/dice_boxplot.png, id=85, 462.528pt x 346.896pt>
+<../results/metrics/dice_boxplot.png, id=103, 462.528pt x 346.896pt>
 File: ../results/metrics/dice_boxplot.png Graphic file (type png)
 <use ../results/metrics/dice_boxplot.png>
 Package pdftex.def Info: ../results/metrics/dice_boxplot.png  used on input lin
-e 99.
+e 112.
 (pdftex.def)             Requested size: 328.82707pt x 246.63135pt.
-<../results/metrics/iou_comparison.png, id=87, 578.16pt x 433.62pt>
+<../results/metrics/iou_comparison.png, id=105, 578.16pt x 433.62pt>
 File: ../results/metrics/iou_comparison.png Graphic file (type png)
 <use ../results/metrics/iou_comparison.png>
 Package pdftex.def Info: ../results/metrics/iou_comparison.png  used on input l
-ine 106.
+ine 119.
 (pdftex.def)             Requested size: 328.82707pt x 246.61679pt.
-) (conclusion.tex) (manuscript.bbl
+) (conclusion.tex) (manuscript.bbl)
 
-[4]
+[6]
 
-[5 <./figures/ROI_1_raw_small.jpg> <./figures/ROI_1_vespa_overlay_small.jpg> <.
+[7 <./figures/ROI_1_raw_small.jpg> <./figures/ROI_1_vespa_overlay_small.jpg> <.
 /figures/ROI_1_sam_overlay_small.jpg> <./figures/ROI_1_yolo_overlay_small.jpg>]
 
 
-[6 <../results/metrics/dice_boxplot.png> <../results/metrics/iou_comparison.png
->])
-
-[7] (manuscript.aux)
+[8 <../results/metrics/dice_boxplot.png> <../results/metrics/iou_comparison.png
+>] (manuscript.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
-Package rerunfilecheck Info: File `manuscript.out' has not changed.
-(rerunfilecheck)             Checksum: AD455811F3313F1737006FA99750B878;1416.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `manuscript.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `manuscript.out':
+(rerunfilecheck)             Before: AD455811F3313F1737006FA99750B878;1416
+(rerunfilecheck)             After:  83EEE511384C2944AB3C4A88D60A90F7;3583.
  ) 
 Here is how much of TeX's memory you used:
- 11320 strings out of 473522
- 183111 string characters out of 5714126
- 594332 words of memory out of 5000000
- 34394 multiletter control sequences out of 15000+600000
- 565420 words of font info for 59 fonts, out of 8000000 for 9000
+ 11335 strings out of 473522
+ 183501 string characters out of 5714126
+ 593343 words of memory out of 5000000
+ 34399 multiletter control sequences out of 15000+600000
+ 566069 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,9n,79p,939b,571s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/srenne/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmbx10.pfb><C:/Users/srenne/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
-msfonts/cm/cmbx12.pfb><C:/Users/srenne/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmmi10.pfb><C:/Users/srenne/AppData/Local/Programs/MiKTeX/
-fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/srenne/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/srenne/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/srenne/App
-Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/
-srenne/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-<C:/Users/srenne/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
-mtt10.pfb>
-Output written on manuscript.pdf (7 pages, 1254476 bytes).
+ 75i,9n,79p,1067b,542s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\srenne\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcr
+m1095.pk><C:/Users/srenne/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
+onts/cm/cmbx10.pfb><C:/Users/srenne/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/amsfonts/cm/cmbx12.pfb><C:/Users/srenne/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/srenne/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/srenne/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/srenne/AppDa
+ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/sre
+nne/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/
+Users/srenne/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.
+pfb><C:/Users/srenne/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmsy10.pfb><C:/Users/srenne/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/amsfonts/cm/cmti10.pfb><C:/Users/srenne/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmtt10.pfb>
+Output written on manuscript.pdf (8 pages, 1291800 bytes).
 PDF statistics:
- 159 PDF objects out of 1000 (max. 8388607)
- 28 named destinations out of 1000 (max. 500000)
+ 190 PDF objects out of 1000 (max. 8388607)
+ 37 named destinations out of 1000 (max. 500000)
  111 words of extra memory for PDF output out of 10000 (max. 10000000)
 

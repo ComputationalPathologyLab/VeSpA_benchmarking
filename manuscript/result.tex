@@ -1,5 +1,6 @@
 \section{Results}
-Table~\ref{tab:summary_metrics} reports the mean segmentation performance across the four benchmark histological images. The custom VeSpA pipeline achieved the highest mean Dice coefficient (\(0.7332\)) and IoU (\(0.5804\)). SAM ranked second with a mean Dice coefficient of \(0.2950\), while the pretrained YOLOv8 segmentation model achieved a mean Dice coefficient of \(0.0299\).
+
+Table~\ref{tab:summary_metrics} reports the mean segmentation performance across the four benchmark histological images for all four methods. VeSpA achieved the best mean Dice coefficient (0.7332) and IoU (0.5804). The hybrid VeSpA-SAM method ranked second with a mean Dice coefficient of 0.6901 and the highest mean precision (0.8839), indicating that stain-guided prompting substantially reduced false positives relative to the generic SAM baseline. However, the hybrid method remained slightly below VeSpA in overlap-based metrics because its recall (0.5732) was lower than VeSpA's 0.6712.
 
 \begin{table}[htbp]
 \centering
@@ -10,13 +11,14 @@ Table~\ref{tab:summary_metrics} reports the mean segmentation performance across
 Model & Dice & IoU & Precision & Recall \\
 \hline
 VeSpA & 0.7332 & 0.5804 & 0.8171 & 0.6712 \\
+VeSpA+SAM (Hybrid) & 0.6901 & 0.5295 & 0.8839 & 0.5732 \\
 SAM & 0.2950 & 0.1754 & 0.6509 & 0.1914 \\
 YOLOv8-seg & 0.0299 & 0.0154 & 0.8567 & 0.0156 \\
 \hline
 \end{tabular}
 \end{table}
 
-Per-image results are shown in Table~\ref{tab:per_image_results}. VeSpA consistently outperformed the other methods on all four images, with Dice scores ranging from \(0.6776\) to \(0.7730\). SAM produced non-trivial but clearly inferior vessel masks, with Dice scores between \(0.1574\) and \(0.3424\). YOLOv8-seg returned sparse predictions and produced zero Dice on two of the four images.
+Per-image results are shown in Table~\ref{tab:per_image_results}. The hybrid method produced substantial gains over automatic SAM on all four images, raising Dice from 0.3385 to 0.5991 on \texttt{ROI\_1}, from 0.1574 to 0.6917 on \texttt{ROI\_2}, from 0.3424 to 0.7212 on \texttt{ROI\_3}, and from 0.3415 to 0.7483 on \texttt{ROI\_4}. Despite these improvements, VeSpA remained the top-performing method on every image in this benchmark.
 
 \begin{table}[htbp]
 \centering
@@ -27,22 +29,26 @@ Per-image results are shown in Table~\ref{tab:per_image_results}. VeSpA consiste
 Image & Model & Dice & IoU \\
 \hline
 ROI\_1 & VeSpA & 0.6776 & 0.5124 \\
+ROI\_1 & VeSpA+SAM (Hybrid) & 0.5991 & 0.4276 \\
 ROI\_1 & SAM & 0.3385 & 0.2037 \\
 ROI\_1 & YOLOv8-seg & 0.0700 & 0.0363 \\
 ROI\_2 & VeSpA & 0.7100 & 0.5504 \\
+ROI\_2 & VeSpA+SAM (Hybrid) & 0.6917 & 0.5287 \\
 ROI\_2 & SAM & 0.1574 & 0.0854 \\
 ROI\_2 & YOLOv8-seg & 0.0494 & 0.0253 \\
 ROI\_3 & VeSpA & 0.7730 & 0.6300 \\
+ROI\_3 & VeSpA+SAM (Hybrid) & 0.7212 & 0.5640 \\
 ROI\_3 & SAM & 0.3424 & 0.2066 \\
 ROI\_3 & YOLOv8-seg & 0.0000 & 0.0000 \\
 ROI\_4 & VeSpA & 0.7722 & 0.6290 \\
+ROI\_4 & VeSpA+SAM (Hybrid) & 0.7483 & 0.5978 \\
 ROI\_4 & SAM & 0.3415 & 0.2059 \\
 ROI\_4 & YOLOv8-seg & 0.0000 & 0.0000 \\
 \hline
 \end{tabular}
 \end{table}
 
-Runtime measurements are summarized in Table~\ref{tab:runtime}. YOLOv8-seg was the fastest method with a mean runtime of \(0.59\) s per image, followed by VeSpA at \(2.57\) s per image. SAM was substantially slower, requiring \(23.35\) s per image under the current repository configuration.
+Runtime measurements are summarized in Table~\ref{tab:runtime}. YOLOv8-seg remained the fastest method at 0.63 s per image, followed by VeSpA at 2.58 s. The hybrid VeSpA-SAM method required 43.46 s per image on average, making it the slowest configuration in the current repository benchmark because it runs prompt-guided SAM refinement over multiple stain-derived components per image.
 
 \begin{table}[htbp]
 \centering
@@ -52,16 +58,17 @@ Runtime measurements are summarized in Table~\ref{tab:runtime}. YOLOv8-seg was t
 \hline
 Model & Runtime (s/image) \\
 \hline
-YOLOv8-seg & 0.59 \\
-VeSpA & 2.57 \\
-SAM & 23.35 \\
+YOLOv8-seg & 0.63 \\
+VeSpA & 2.58 \\
+SAM & 25.23 \\
+VeSpA+SAM (Hybrid) & 43.46 \\
 \hline
 \end{tabular}
 \end{table}
 
-Figure~\ref{fig:dice_boxplot} visualizes the distribution of Dice scores, and Figure~\ref{fig:iou_bar} shows the mean IoU comparison. The plots confirm the ranking observed in the tabulated results. Qualitative overlays saved under \path{results/prediction/} are consistent with these metrics: VeSpA captures annotated vascular structures more completely, SAM identifies partial vessel structures while missing substantial foreground, and YOLOv8-seg produces highly conservative masks with low recall.
+Figure~\ref{fig:dice_boxplot} visualizes the distribution of Dice scores, and Figure~\ref{fig:iou_bar} shows the mean IoU comparison. The plots confirm that the hybrid pipeline closes much of the gap between baseline SAM and VeSpA while clearly outperforming YOLOv8-seg in overlap-based metrics. Qualitative overlays saved under \path{results/prediction/} show that the hybrid method is more conservative than VeSpA, with higher precision but lower recall on several images.
 
-Figure~\ref{fig:roi1_example} provides a representative qualitative example for \texttt{ROI\_1}. Panel (a) shows the raw histological image. Panels (b)--(d) show the overlays generated by the benchmark for VeSpA, SAM, and YOLOv8-seg, respectively.
+Figure~\ref{fig:roi1_example} provides a representative qualitative example for \texttt{ROI\_1}. Panel (a) shows the raw histological image. Panels (b)--(d) show the overlays generated by the benchmark for VeSpA, SAM, and YOLOv8-seg, respectively; the hybrid method is discussed quantitatively in the tables above and is also available in the saved prediction overlays under \path{results/prediction/VeSpA+SAM (Hybrid)/}.
 
 \begin{figure}[htbp]
 \centering
@@ -104,6 +111,7 @@ Figure~\ref{fig:roi1_example} provides a representative qualitative example for 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\linewidth]{../results/metrics/iou_comparison.png}
-\caption{Mean IoU comparison across the three evaluated segmentation methods.}
+\caption{Mean IoU comparison across the four evaluated segmentation methods.}
 \label{fig:iou_bar}
 \end{figure}
+
