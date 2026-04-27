@@ -6,7 +6,7 @@ from pathlib import Path
 import numpy as np
 
 
-_MODULE_PATH = Path(__file__).with_name("Segmentation + Measurements.py")
+_MODULE_PATH = Path(__file__).with_name("VeSpA.py")
 _SPEC = spec_from_file_location("vespa_segmentation", _MODULE_PATH)
 if _SPEC is None or _SPEC.loader is None:
     raise ImportError(f"Unable to load VeSpA module from {_MODULE_PATH}")
