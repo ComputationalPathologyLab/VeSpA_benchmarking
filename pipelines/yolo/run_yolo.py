@@ -18,6 +18,7 @@ DEFAULT_YOLO_WEIGHTS = os.getenv(
     str(Path(__file__).resolve().parents[2] / "models" / "yolov8n-seg.pt"),
 )
 YOLO_CONFIG_DIR = os.getenv("YOLO_CONFIG_DIR", str(Path(__file__).resolve().parents[2] / ".cache" / "ultralytics"))
+YOLO_CONFIDENCE_THRESHOLDS = (0.25, 0.15, 0.05, 0.01)
 _YOLO_MODEL = None
 _YOLO_WEIGHTS = None
 
@@ -50,6 +51,37 @@ def _load_model(weights_path: str = DEFAULT_YOLO_WEIGHTS):
     return _YOLO_MODEL
 
 
+def _predict_with_confidence_fallback(
+    model,
+    image_path: str,
+    imgsz: int,
+    device: str | int,
+    confidence_thresholds: tuple[float, ...] = YOLO_CONFIDENCE_THRESHOLDS,
+):
+    for conf in confidence_thresholds:
+        results = model.predict(
+            source=image_path,
+            imgsz=imgsz,
+            retina_masks=True,
+            verbose=False,
+            device=device,
+            conf=conf,
+        )
+        if not results:
+            continue
+
+        result = results[0]
+        masks = getattr(result, "masks", None)
+        if masks is not None and getattr(masks, "data", None) is not None:
+            return results
+
+        boxes = getattr(result, "boxes", None)
+        if boxes is not None and len(boxes) > 0:
+            return results
+
+    return []
+
+
 def run_model(image_path: str, weights_path: str = DEFAULT_YOLO_WEIGHTS, imgsz: int = 1024) -> np.ndarray:
     """
     Returns binary segmentation mask (H x W), dtype uint8.
@@ -60,12 +92,12 @@ def run_model(image_path: str, weights_path: str = DEFAULT_YOLO_WEIGHTS, imgsz: 
 
     height, width = image_bgr.shape[:2]
     model = _load_model(weights_path=weights_path)
-    results = model.predict(
-        source=image_path,
+    device = 0 if torch is not None and torch.cuda.is_available() else "cpu"
+    results = _predict_with_confidence_fallback(
+        model=model,
+        image_path=image_path,
         imgsz=imgsz,
-        retina_masks=True,
-        verbose=False,
-        device=0 if torch is not None and torch.cuda.is_available() else "cpu",
+        device=device,
     )
 
     combined = np.zeros((height, width), dtype=np.uint8)

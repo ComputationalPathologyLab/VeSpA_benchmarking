@@ -59,26 +59,35 @@ Average Dice per model:
 
 ### Metrics (CSV)
 
-**`results/metrics/results.csv`** - All per-image results
+**`results/metrics/results_cat2.csv`** - All per-image results (default: intersection GT)
 ```
-image_name,model,dice,iou,precision,recall
-ROI_1.tiff,VeSpA,0.6776,0.5124,0.8171,0.6712
-ROI_1.tiff,SAM,0.3385,0.2037,0.6509,0.1914
-ROI_1.tiff,YOLOv8-seg,0.0700,0.0363,0.8567,0.0156
-ROI_1.tiff,VeSpA+SAM (Hybrid),?,?,?,?
+image_name,model,gt_category,dice,iou,precision,recall
+ROI_1.tiff,VeSpA,category_2_intersection,0.6935,0.5309,0.7198,0.6692
+ROI_1.tiff,SAM,category_2_intersection,0.3709,0.2276,0.6660,0.2570
 ...
 ```
 
-**`results/metrics/summary.csv`** - Mean metrics per model
+**`results/metrics/summary_cat2.csv`** - Mean metrics per model
 ```
 model,dice,iou,precision,recall
-VeSpA,0.7332,0.5804,0.8171,0.6712
-SAM,0.2950,0.1754,0.6509,0.1914
-YOLOv8-seg,0.0299,0.0154,0.8567,0.0156
-VeSpA+SAM (Hybrid),?,?,?,?
+VeSpA,0.7417,0.5909,0.7054,0.7914
+SAM,0.3239,0.1961,0.5768,0.2259
+...
 ```
 
-**`results/metrics/runtime_summary.csv`** - Speed comparison
+**`results/metrics/runtime_summary_cat2.csv`** - Speed comparison
+```
+model,runtime_seconds
+VeSpA,2.43
+SAM,66.30
+...
+```
+
+**Category-specific files:**
+- `results_cat1_SLR.csv` / `results_cat1_GG.csv` - Individual observer results
+- `results_cat2.csv` - Intersection GT results (default)
+- `results_cat3.csv` - Union GT results
+- `results_all_categories.csv` - Combined results from all categories
 ```
 model,runtime_seconds
 YOLOv8-seg,0.59

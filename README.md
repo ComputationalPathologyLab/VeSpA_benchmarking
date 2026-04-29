@@ -187,9 +187,10 @@ All methods evaluated on:
 ### Results Output
 
 Results saved to:
-- `results/metrics/results.csv` - Per-image metrics
-- `results/metrics/summary.csv` - Mean metrics per model
-- `results/metrics/runtime_summary.csv` - Runtime comparison
+- `results/metrics/results_cat2.csv` - Per-image metrics (default: intersection GT)
+- `results/metrics/summary_cat2.csv` - Mean metrics per model
+- `results/metrics/runtime_summary_cat2.csv` - Runtime comparison
+- `results/metrics/results_all_categories.csv` - All categories combined
 - `results/metrics/*.png` - Comparison plots
 
 Predictions saved to:
