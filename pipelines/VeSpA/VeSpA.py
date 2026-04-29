@@ -163,13 +163,13 @@ def process_image(input_path: str, output_dir: str,
 
     csv_path = image_output_dir / f"{base_name}_measurements.csv"
     measurements_df.to_csv(csv_path, index=True)
-    print(f"✓ Saved measurements: {csv_path}")
+    print(f"Saved measurements: {csv_path}")
 
     # ── Step 8: Save filled binary mask ───────────────────────────────
     binary_path = image_output_dir / f"{base_name}_binary.png"
     if not cv2.imwrite(str(binary_path), filled_mask):
         raise IOError(f"Failed to write binary mask: {binary_path}")
-    print(f"✓ Saved filled binary mask: {binary_path}")
+    print(f"Saved filled binary mask: {binary_path}")
 
     # ── Step 9: Colour overlays ────────────────────────────────────────
     # Green = full vessel (walls + filled lumens)
@@ -180,7 +180,7 @@ def process_image(input_path: str, output_dir: str,
     overlay_path = image_output_dir / f"{base_name}_overlay.png"
     if not cv2.imwrite(str(overlay_path), blended):
         raise IOError(f"Failed to write overlay: {overlay_path}")
-    print(f"✓ Saved overlay (green=vessel): {overlay_path}")
+    print(f"Saved overlay (green=vessel): {overlay_path}")
 
     # ── Step 10: Statistics ────────────────────────────────────────────
     n_vessels = len(measurements_df)
@@ -225,9 +225,9 @@ def process_folder(input_folder: str, output_folder: str,
             total_vessels += process_image(str(png_file), output_folder,
                                            threshold_mode, percentile)
         except (ValueError, IOError) as e:
-            print(f"✗ Error processing {png_file.name}: {e}")
+            print(f"Error processing {png_file.name}: {e}")
         except Exception:
-            print(f"✗ Unexpected error processing {png_file.name}")
+            print(f"Unexpected error processing {png_file.name}")
             raise
 
     print("\n" + "=" * 60)

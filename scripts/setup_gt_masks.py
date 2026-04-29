@@ -50,34 +50,34 @@ def show_status(gt_base_dir: Path) -> None:
     print("=" * 70)
 
     # Category 1: Observers
-    print("\n📁 CATEGORY 1 - Observer Masks:")
+    print("\n CATEGORY 1 - Observer Masks:")
     cat1_masks = list(manager.cat1_dir.glob("*.png"))
     if cat1_masks:
         print(f"   Found {len(cat1_masks)} masks:")
         for mask in sorted(cat1_masks):
             print(f"   - {mask.name}")
     else:
-        print("   ❌ No observer masks found")
+        print("   No observer masks found")
 
     # Category 2: Intersection
-    print("\n📁 CATEGORY 2 - Intersection Masks:")
+    print("\n CATEGORY 2 - Intersection Masks:")
     cat2_masks = list(manager.cat2_dir.glob("*.png"))
     if cat2_masks:
         print(f"   Found {len(cat2_masks)} masks:")
         for mask in sorted(cat2_masks):
             print(f"   - {mask.name}")
     else:
-        print("   ❌ No intersection masks found")
+        print("   No intersection masks found")
 
     # Category 3: Union
-    print("\n📁 CATEGORY 3 - Union Masks:")
+    print("\nCATEGORY 3 - Union Masks:")
     cat3_masks = list(manager.cat3_dir.glob("*.png"))
     if cat3_masks:
         print(f"   Found {len(cat3_masks)} masks:")
         for mask in sorted(cat3_masks):
             print(f"   - {mask.name}")
     else:
-        print("   ❌ No union masks found")
+        print("   No union masks found")
 
     print("\n" + "=" * 70)
 

@@ -254,7 +254,6 @@ def generate_summary_plots(results_df: pd.DataFrame) -> None:
     plt.figure(figsize=(12, 6))
     metrics_to_plot = ["dice", "iou", "precision", "recall"]
     summary_all = results_df.groupby("model", as_index=False)[metrics_to_plot].mean()
-    # Sort summary_all to match model registry order
     summary_all["model"] = pd.Categorical(summary_all["model"], categories=model_order, ordered=True)
     summary_all = summary_all.sort_values("model")
 
@@ -274,6 +273,33 @@ def generate_summary_plots(results_df: pd.DataFrame) -> None:
     plt.savefig(METRICS_DIR / "metrics_comparison.png", dpi=200)
     plt.close()
 
+    # Plot v2 swapping model and metrics
+    plt.figure(figsize=(12, 6))
+    metrics_to_plot = ["dice", "iou", "precision", "recall"]
+    melted = results_df.melt(id_vars="model", value_vars=metrics_to_plot, var_name="metric", value_name="score")
+    summary_v2 = (
+        melted.groupby(["metric", "model"], as_index=False)["score"]
+        .mean()
+        .pivot(index="metric", columns="model", values="score")
+        .reindex(metrics_to_plot)
+    )
+    summary_v2 = summary_v2[model_order]
+
+    x = np.arange(len(summary_v2))
+    width = 0.2
+
+    for i, model in enumerate(summary_v2.columns):
+        plt.bar(x + i * width, summary_v2[model].values, width, label=model)
+
+    plt.xlabel("Metric")
+    plt.ylabel("Score")
+    plt.title("Comprehensive Model Comparison by Metric")
+    plt.xticks(x + width * (len(summary_v2.columns) - 1) / 2, summary_v2.index, rotation=45, ha='right')
+    plt.legend()
+    plt.ylim([0, 1.0])
+    plt.tight_layout()
+    plt.savefig(METRICS_DIR / "metrics_comparisonV2.png", dpi=200)
+    plt.close()
 
 def build_model_registry() -> dict[str, callable]:
     return {
