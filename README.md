@@ -7,9 +7,9 @@ Comprehensive benchmarking of vessel segmentation pipelines for histology images
 This repository compares three vessel segmentation methods on histological images with brown DAB (diaminobenzidine) immunostaining marking endothelial cells:
 
 1. **VeSpA** - Color-based vessel segmentation using CMYK decomposition
-2. **SAM** - Segment Anything Model with automatic mask generation
-3. **YOLOv8-seg** - Pre-trained object detection and segmentation
-4. **VeSpA+SAM (Hybrid)** - Novel hybrid approach combining color priors with foundation models
+2. **VeSpA+SAM (Hybrid)** - Novel hybrid approach combining color priors with foundation models
+3. **SAM** - Segment Anything Model with automatic mask generation
+4. **YOLOv8-seg** - Pre-trained object detection and segmentation
 
 ## Quick Start
 
@@ -30,7 +30,7 @@ pip install -r requirements.txt
 ### Run the benchmarking pipeline:
 
 ```bash
-python evaluation/benchmark.py
+python evaluation/benchmark.py --all-categories
 ```
 
 This will:
@@ -63,44 +63,7 @@ This will:
 - Sensitive to morphological parameter tuning
 - Sometimes imperfect boundary definition
 
-### 2. SAM (Segment Anything Model)
-
-**Approach**: Foundation model with automatic mask generation
-
-**Key Steps**:
-- Uniform 16×16 grid of prompt points
-- SAM prediction at each point
-- Filtering by IoU and stability scores
-- Mask combination
-
-**Advantages**:
-- Automatic (no prompting required)
-- Detects diverse objects
-- Strong generalization
-
-**Limitations**:
-- Not histology-aware
-- Many false positives from non-vessel structures
-- Grid-based sampling may miss small vessels
-
-### 3. YOLOv8-seg
-
-**Approach**: Pre-trained instance segmentation
-
-**Key Steps**:
-- Object detection + segmentation head
-- Non-maximum suppression
-- Mask refinement
-
-**Advantages**:
-- Fast inference (nano model)
-- Well-optimized
-
-**Limitations**:
-- Trained on general objects
-- May not generalize well to histology
-
-### 4. VeSpA+SAM (Hybrid) - **NEW**
+### 4. VeSpA+SAM (Hybrid)
 
 **Approach**: Combines color priors with foundation model refinement
 
@@ -125,6 +88,44 @@ This will:
 - Superior boundary definition
 - Less sensitive to morphological parameters
 - Foundation model reliability
+
+### 3. SAM (Segment Anything Model)
+
+**Approach**: Foundation model with automatic mask generation
+
+**Key Steps**:
+- Uniform 16×16 grid of prompt points
+- SAM prediction at each point
+- Filtering by IoU and stability scores
+- Mask combination
+
+**Advantages**:
+- Automatic (no prompting required)
+- Detects diverse objects
+- Strong generalization
+
+**Limitations**:
+- Not histology-aware
+- Many false positives from non-vessel structures
+- Grid-based sampling may miss small vessels
+
+### 4. YOLOv8-seg
+
+**Approach**: Pre-trained instance segmentation
+
+**Key Steps**:
+- Object detection + segmentation head
+- Non-maximum suppression
+- Mask refinement
+
+**Advantages**:
+- Fast inference (nano model)
+- Well-optimized
+
+**Limitations**:
+- Trained on general objects
+- May not generalize well to histology
+
 
 ---
 

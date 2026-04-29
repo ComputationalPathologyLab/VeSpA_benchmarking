@@ -1,49 +1,49 @@
 \section{Results}
 
-Table~\ref{tab:summary_metrics} reports the mean segmentation performance across the four benchmark histological images for all four methods. VeSpA achieved the best mean Dice coefficient (0.7332) and IoU (0.5804). The hybrid VeSpA-SAM method ranked second with a mean Dice coefficient of 0.6901 and the highest mean precision (0.8839), indicating that stain-guided prompting substantially reduced false positives relative to the generic SAM baseline. However, the hybrid method remained slightly below VeSpA in overlap-based metrics because its recall (0.5732) was lower than VeSpA's 0.6712.
+Table~\ref{tab:summary_metrics} reports the mean segmentation performance across the four benchmark histological images for all four methods. VeSpA achieved the best mean Dice coefficient (0.7433) and IoU (0.5929). The hybrid VeSpA-SAM method ranked second with a mean Dice coefficient of 0.6979 and the highest mean precision (0.8739), indicating that stain-guided prompting substantially reduced false positives relative to the generic SAM baseline. However, the hybrid method remained slightly below VeSpA in overlap-based metrics because its recall (0.5958) was lower than VeSpA's 0.7052.
 
 \begin{table}[htbp]
 \centering
-\caption{Mean performance metrics computed from \texttt{results/metrics/summary.csv}.}
+\caption{Mean performance metrics computed from \texttt{results/metrics/results\_all\_categories.csv}.}
 \label{tab:summary_metrics}
 \begin{tabular}{lcccc}
 \hline
 Model & Dice & IoU & Precision & Recall \\
 \hline
-VeSpA & 0.7332 & 0.5804 & 0.8171 & 0.6712 \\
-VeSpA+SAM (Hybrid) & 0.6901 & 0.5295 & 0.8839 & 0.5732 \\
-SAM & 0.2950 & 0.1754 & 0.6509 & 0.1914 \\
-YOLOv8-seg & 0.0299 & 0.0154 & 0.8567 & 0.0156 \\
+VeSpA & 0.7433 & 0.5929 & 0.8059 & 0.7052 \\
+VeSpA+SAM (Hybrid) & 0.6979 & 0.5397 & 0.8739 & 0.5958 \\
+SAM & 0.2988 & 0.1782 & 0.6403 & 0.1968 \\
+YOLOv8-seg & 0.1263 & 0.0711 & 0.7557 & 0.0736 \\
 \hline
 \end{tabular}
 \end{table}
 
-Per-image results are shown in Table~\ref{tab:per_image_results}. The hybrid method produced substantial gains over automatic SAM on all four images, raising Dice from 0.3385 to 0.5991 on \texttt{ROI\_1}, from 0.1574 to 0.6917 on \texttt{ROI\_2}, from 0.3424 to 0.7212 on \texttt{ROI\_3}, and from 0.3415 to 0.7483 on \texttt{ROI\_4}. Despite these improvements, VeSpA remained the top-performing method on every image in this benchmark.
+Per-image results are shown in Table~\ref{tab:per_image_results}. The hybrid method produced substantial gains over automatic SAM on all four images, raising Dice from 0.3388 to 0.5952 on \texttt{ROI\_1}, from 0.1607 to 0.7229 on \texttt{ROI\_2}, from 0.3459 to 0.7247 on \texttt{ROI\_3}, and from 0.3497 to 0.7487 on \texttt{ROI\_4}. Despite these improvements, VeSpA remained the top-performing method on every image in this benchmark.
 
 \begin{table}[htbp]
 \centering
-\caption{Per-image Dice and IoU values extracted from \texttt{results/metrics/results.csv}.}
+\caption{Per-image Dice and IoU values averaged across all ground truth categories from \texttt{results/metrics/results\_all\_categories.csv}.}
 \label{tab:per_image_results}
 \begin{tabular}{llcc}
 \hline
 Image & Model & Dice & IoU \\
 \hline
-ROI\_1 & VeSpA & 0.6776 & 0.5124 \\
-ROI\_1 & VeSpA+SAM (Hybrid) & 0.5991 & 0.4276 \\
-ROI\_1 & SAM & 0.3385 & 0.2037 \\
-ROI\_1 & YOLOv8-seg & 0.0700 & 0.0363 \\
-ROI\_2 & VeSpA & 0.7100 & 0.5504 \\
-ROI\_2 & VeSpA+SAM (Hybrid) & 0.6917 & 0.5287 \\
-ROI\_2 & SAM & 0.1574 & 0.0854 \\
-ROI\_2 & YOLOv8-seg & 0.0494 & 0.0253 \\
-ROI\_3 & VeSpA & 0.7730 & 0.6300 \\
-ROI\_3 & VeSpA+SAM (Hybrid) & 0.7212 & 0.5640 \\
-ROI\_3 & SAM & 0.3424 & 0.2066 \\
-ROI\_3 & YOLOv8-seg & 0.0000 & 0.0000 \\
-ROI\_4 & VeSpA & 0.7722 & 0.6290 \\
-ROI\_4 & VeSpA+SAM (Hybrid) & 0.7483 & 0.5978 \\
-ROI\_4 & SAM & 0.3415 & 0.2059 \\
-ROI\_4 & YOLOv8-seg & 0.0000 & 0.0000 \\
+ROI\_1 & VeSpA & 0.6845 & 0.5204 \\
+ROI\_1 & VeSpA+SAM (Hybrid) & 0.5952 & 0.4244 \\
+ROI\_1 & SAM & 0.3388 & 0.2041 \\
+ROI\_1 & YOLOv8-seg & 0.0736 & 0.0383 \\
+ROI\_2 & VeSpA & 0.7442 & 0.5931 \\
+ROI\_2 & VeSpA+SAM (Hybrid) & 0.7229 & 0.5662 \\
+ROI\_2 & SAM & 0.1607 & 0.0874 \\
+ROI\_2 & YOLOv8-seg & 0.0512 & 0.0263 \\
+ROI\_3 & VeSpA & 0.7694 & 0.6253 \\
+ROI\_3 & VeSpA+SAM (Hybrid) & 0.7247 & 0.5692 \\
+ROI\_3 & SAM & 0.3459 & 0.2093 \\
+ROI\_3 & YOLOv8-seg & 0.0706 & 0.0366 \\
+ROI\_4 & VeSpA & 0.7750 & 0.6327 \\
+ROI\_4 & VeSpA+SAM (Hybrid) & 0.7487 & 0.5991 \\
+ROI\_4 & SAM & 0.3497 & 0.2120 \\
+ROI\_4 & YOLOv8-seg & 0.3097 & 0.1833 \\
 \hline
 \end{tabular}
 \end{table}
