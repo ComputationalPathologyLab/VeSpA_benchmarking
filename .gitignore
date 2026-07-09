@@ -1,1 +1,17 @@
 models/*.pth
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# Ultralytics runtime cache
+.cache/
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.blg

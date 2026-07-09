@@ -189,10 +189,12 @@ def create_overlay(image: np.ndarray, prediction: np.ndarray, ground_truth: np.n
     gt = np.squeeze(ground_truth) > 0
 
     overlay = base.astype(np.float32)
-    overlay[gt] = overlay[gt] * 0.5 + np.array([0, 255, 0], dtype=np.float32) * 0.5
-    overlay[pred] = overlay[pred] * 0.5 + np.array([255, 0, 0], dtype=np.float32) * 0.5
     overlap = np.logical_and(pred, gt)
-    overlay[overlap] = overlay[overlap] * 0.3 + np.array([255, 255, 0], dtype=np.float32) * 0.7
+    fn = np.logical_and(gt, np.logical_not(pred))
+    fp = np.logical_and(pred, np.logical_not(gt))
+    overlay[fn] = overlay[fn] * 0.5 + np.array([255, 0, 0], dtype=np.float32) * 0.5    # red
+    overlay[fp] = overlay[fp] * 0.5 + np.array([0, 0, 255], dtype=np.float32) * 0.5    # blue
+    overlay[overlap] = overlay[overlap] * 0.3 + np.array([0, 255, 0], dtype=np.float32) * 0.7  # green
     return overlay.astype(np.uint8)
 
 
