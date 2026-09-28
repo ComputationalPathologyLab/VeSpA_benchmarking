@@ -2,6 +2,14 @@
 
 Comprehensive benchmarking of vessel segmentation pipelines for histology images with DAB immunostaining.
 
+## Video demonstration
+
+Watch the VeSpA QuPath plugin demonstration:
+
+- YouTube: <https://youtu.be/C2BlUKCtvtw>
+
+The video introduces the VeSpA plugin workflow in QuPath. This benchmarking repository evaluates vessel segmentation methods related to the broader VeSpA ecosystem.
+
 ## Overview
 
 This repository compares three vessel segmentation methods on histological images with brown DAB (diaminobenzidine) immunostaining marking endothelial cells:
